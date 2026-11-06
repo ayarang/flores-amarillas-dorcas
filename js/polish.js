@@ -205,3 +205,10 @@ finale?.addEventListener('keydown',(event)=>{
   if(event.shiftKey && index<=0){event.preventDefault();controls[controls.length-1].focus()}
   else if(!event.shiftKey && index===controls.length-1){event.preventDefault();controls[0].focus()}
 });
+
+
+// Volver a empezar sin perder los recuerdos ni depender de otra navegación.
+$('#finale-repeat')?.addEventListener('click',()=>{
+  window.scrollTo({top:0,behavior:'instant'});
+  window.location.reload();
+});

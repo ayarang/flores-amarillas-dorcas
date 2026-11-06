@@ -46,6 +46,9 @@ El sitio es estático, sin dependencias, compilación ni base de datos. En Setti
 - Postal «No estamos cerca. Pero aquí estoy» usando una foto familiar ya existente.
 - Galería con flechas, contador y navegación entre fotografías en pantalla completa.
 - Botón «Compartir esta sorpresa», con Web Share nativo y copia de enlace como alternativa.
+- Posdata breve tomada de la conversación del audio enviado por WhatsApp: solo texto; **no se sube ninguna grabación**.
+- Botón «Volver a ver las flores» en el final para repetir la experiencia.
+- Regla CSS para mantener realmente ocultas las escenas aún no reveladas en todos los navegadores.
 - Reproductor flotante de Danza Kuduro y música instrumental eliminada.
 
 ## Accesibilidad y rendimiento
