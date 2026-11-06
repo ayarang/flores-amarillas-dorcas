@@ -88,3 +88,58 @@ body{background-image:radial-gradient(circle at 15% 15%,rgba(249,230,240,.27),tr
 .finale-repeat{background:rgba(255,251,240,.72);border:1px solid #d7bfcf;color:#76546c}
 .finale-repeat:hover{background:#fff9f1}
 @media(max-width:380px){.little-audio-note{padding:20px 19px}.little-audio-note__quote{font-size:23px}}
+
+
+/* La fecha de Dorcas, con cuenta atrás según la hora oficial de Lima (UTC-05). */
+.birthday-date-card{
+  display:inline-flex;align-items:center;justify-content:center;gap:13px;
+  position:relative;z-index:1;
+  margin:9px auto 12px;padding:7px 28px 8px 16px;
+  background:linear-gradient(125deg,rgba(255,253,245,.91),rgba(255,245,244,.73));
+  border:1px solid rgba(208,165,180,.53);
+  border-radius:17px;
+  box-shadow:0 9px 31px rgba(120,78,104,.11);
+  transform:rotate(-2deg);
+  backdrop-filter:blur(12px)
+}
+.birthday-date-card__day{
+  font:500 clamp(43px,10vw,59px)/.95 'Playfair Display',Georgia,serif;
+  color:#946a8c;letter-spacing:-.09em;font-variant-numeric:tabular-nums;
+  padding-right:6px
+}
+.birthday-date-card__details{
+  display:flex;flex-direction:column;gap:3px;align-items:flex-start;
+  text-align:left;letter-spacing:.15em
+}
+.birthday-date-card__details strong{color:#ab819f;font-size:11px;letter-spacing:.23em}
+.birthday-date-card__details span{color:#745a76;font-size:10px;font-weight:800;white-space:nowrap}
+.birthday-date-card__spark{position:absolute;right:10px;top:5px;color:#e2b850;font-size:16px}
+.birthday-countdown{display:flex;align-items:center;justify-content:center;gap:9px;flex-wrap:wrap;min-height:25px;margin:0 auto 5px;color:#866d83;font-size:11px;line-height:1.4}
+.birthday-countdown__caption{font-weight:700}
+.birthday-countdown__clock{
+  color:#825d82;
+  background:rgba(255,250,243,.74);
+  border:1px solid rgba(218,184,207,.7);
+  border-radius:999px;
+  padding:5px 10px;
+  font-size:12px;font-weight:800;letter-spacing:.065em;
+  font-variant-numeric:tabular-nums;
+  white-space:nowrap
+}
+body.birthday-day .birthday-date-card{
+  background:linear-gradient(120deg,#fff8ec,#ffeab9,#fff0ef);
+  border-color:#e8c97b;
+  box-shadow:0 10px 36px rgba(212,161,82,.2);
+  animation:birthday-date-glow 3.4s ease-in-out infinite
+}
+body.birthday-day .birthday-countdown__caption{font-weight:800;color:#89618a;font-size:12px}
+@keyframes birthday-date-glow{50%{box-shadow:0 14px 42px rgba(229,184,99,.35)}}
+@media(max-width:420px){
+  .birthday-date-card{padding:6px 24px 7px 13px;margin-top:6px;margin-bottom:9px;gap:10px}
+  .birthday-date-card__day{font-size:45px}
+  .birthday-date-card__details strong{font-size:10px}
+  .birthday-date-card__details span{font-size:9px}
+  .birthday-countdown{margin-bottom:2px}
+  #intro .intro-inner{padding-top:8px}
+}
+@media(prefers-reduced-motion:reduce){body.birthday-day .birthday-date-card{animation:none}}

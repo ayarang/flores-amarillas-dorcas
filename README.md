@@ -12,7 +12,8 @@ Versión de cumpleaños del proyecto de flores amarillas para Dorcas Yaranga. Re
 - js/particles.js — pétalos, confeti y destellos en canvas.
 - js/youtube.js — reproductor flotante oficial de YouTube (Danza Kuduro 00:44–01:14), que intenta comenzar al tocar el girasol.
 - css/youtube.css — estilos adaptables del reproductor flotante.
-- css/polish.css — detalles visuales premium, barra de progreso, postal familiar, controles de galería y mejoras móviles.
+- css/polish.css — detalles visuales premium, barra de progreso, postal familiar, fecha destacada, controles de galería y mejoras móviles.
+- js/birthday.js — cuenta atrás al viernes 6 de noviembre de 2026 (00:00 hora peruana), y felicitación automática desde la medianoche.
 - js/polish.js — navegación de capítulos, mini-interacciones, galería accesible y opción de compartir.
 - assets/illustrations/ — girasol individual y ramo ilustrados en SVG.
 - assets/images/ — cuatro fotografías recuperadas de la versión anterior.
@@ -55,4 +56,4 @@ El sitio es estático, sin dependencias, compilación ni base de datos. En Setti
 
 Diseño mobile-first; soporte de teclado, galería táctil, animaciones reducidas para prefers-reduced-motion, recursos locales y confeti eficiente con canvas.
 
-**Fecha del homenaje:** 6 de noviembre de 2026.
+**Fecha del homenaje:** viernes 6 de noviembre de 2026. La portada muestra una cuenta regresiva con referencia horaria de Perú, actualizada una vez por segundo hasta la medianoche; después muestra el mensaje de cumpleaños. La fecha es visible incluso si se consulta la página desde otro país.
