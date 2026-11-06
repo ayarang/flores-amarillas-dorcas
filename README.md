@@ -10,9 +10,8 @@ Versión de cumpleaños del proyecto de flores amarillas para Dorcas Yaranga. Re
 - css/styles.css — estilos rosa-lila/crema y animaciones adaptables.
 - js/app.js — interacciones y navegación.
 - js/particles.js — pétalos, confeti y destellos en canvas.
-- js/audio.js — melodía instrumental ORIGINAL con Web Audio, iniciada manualmente.
-- js/youtube.js — reproductor oficial de YouTube bajo demanda (Danza Kuduro 00:44–01:14).
-- css/youtube.css — estilos adaptables del momento musical.
+- js/youtube.js — reproductor flotante oficial de YouTube (Danza Kuduro 00:44–01:14), que intenta comenzar al tocar el girasol.
+- css/youtube.css — estilos adaptables del reproductor flotante.
 - assets/illustrations/ — girasol individual y ramo ilustrados en SVG.
 - assets/images/ — cuatro fotografías recuperadas de la versión anterior.
 - flores-original.html — la página anterior preservada sin modificar.
@@ -28,9 +27,11 @@ Agrega las nuevas fotografías en assets/images/ y ajusta las tarjetas dentro de
 
 ## Música
 
-La melodía actual se sintetiza con Web Audio: es una composición instrumental original, no una canción de terceros. Comienza únicamente al pulsar «Activar música», para respetar las restricciones habituales de los navegadores móviles.
+La versión de cumpleaños usa únicamente **Danza Kuduro**, Don Omar ft. Lucenzo, mediante el reproductor oficial de YouTube entre 00:44 y 01:14.
 
-También hay un botón «¡Que empiece la fiesta!» debajo del ramo. Al tocarlo carga el reproductor oficial de YouTube para Danza Kuduro (Don Omar ft. Lucenzo, 00:44–01:14). Este es un intervalo sugerido, ajustable; no se descarga ni aloja la canción en GitHub. YouTube puede requerir que la visitante pulse ▶ dentro del reproductor y su disponibilidad depende de las políticas del video y del navegador. Mientras se muestra el video, se detiene la melodía instrumental original. Para evitar reproducciones simultáneas, iniciar la música instrumental detiene el video.
+La música instrumental anterior se eliminó de la interfaz y ya no se importa el código de audio. La canción se intenta iniciar automáticamente cuando Dorcas toca la flor de bienvenida; el navegador móvil o YouTube pueden impedir la reproducción con sonido. En ese caso, hay controles ▶ visibles para reproducir manualmente.
+
+El reproductor flota encima de la página durante la canción y mantiene el video oficial visible. Al pulsar × se detiene y minimiza a un botón; al reanudar, se carga desde el segundo 44. No se descarga ni redistribuye la grabación.
 
 ## Publicación con GitHub Pages
 

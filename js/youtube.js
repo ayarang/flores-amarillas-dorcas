@@ -1,49 +1,46 @@
 /**
- * Reproductor oficial de YouTube para el tramo festivo de Danza Kuduro.
- * No descarga música ni oculta el reproductor.
- * Los segundos de inicio y fin se pueden modificar aquí.
+ * Momento musical de Dorcas: reproductor oficial flotante de YouTube.
+ * La visitante toca la flor: intentamos reproducir con sonido sin otro clic.
+ * Los navegadores pueden bloquear autoplay y necesitar ▶ dentro del video.
+ * El reproductor nunca se mantiene reproduciéndose oculto.
  */
 const VIDEO_ID = '7zp1TbLFPp8';
 const START_SECONDS = 44;
 const END_SECONDS = 74;
-const EMBED_URL = 'https://www.youtube-nocookie.com/embed/' + VIDEO_ID
-  + '?start=' + START_SECONDS
-  + '&end=' + END_SECONDS
-  + '&autoplay=1&playsinline=1&controls=1&rel=0';
+const EMBED_URL = 'https://www.youtube-nocookie.com/embed/' + VIDEO_ID +
+  '?start=' + START_SECONDS + '&end=' + END_SECONDS +
+  '&autoplay=1&playsinline=1&controls=1&rel=0';
 
-export function initPartyMoment({onPlay} = {}) {
-  const button = document.getElementById('party-play');
-  const panel = document.getElementById('party-video');
-  const frameHolder = document.getElementById('party-frame');
-  if (!button || !panel || !frameHolder) return {stop(){}};
+export function initFloatingParty() {
+  const root = document.getElementById('floating-party');
+  const panel = document.getElementById('floating-party-panel');
+  const holder = document.getElementById('floating-party-frame');
+  const collapse = document.getElementById('floating-party-close');
+  const toggle = document.getElementById('floating-party-toggle');
 
-  let opened = false;
+  if (!root || !panel || !holder || !collapse || !toggle) return {start() {}, stop() {}};
+
   function stop() {
-    if (!opened) return;
-    opened = false;
-    // Desmontar el reproductor detiene video y audio sin depender de APIs de terceros.
-    frameHolder.replaceChildren();
+    // Descargar iframe detiene realmente el audio de YouTube.
+    holder.replaceChildren();
     panel.hidden = true;
-    button.setAttribute('aria-expanded', 'false');
-    button.setAttribute('aria-label', 'Reproducir fragmento de Danza Kuduro en YouTube');
-    button.innerHTML = '<span aria-hidden="true">▶</span> ¡Que empiece la fiesta!';
+    toggle.hidden = false;
   }
-  button.addEventListener('click', () => {
-    if (opened) { stop(); return; }
-    onPlay?.();
+  function start() {
+    if (!panel.hidden && holder.firstChild) return;
+    root.hidden = false;
+    panel.hidden = false;
+    toggle.hidden = true;
     const iframe = document.createElement('iframe');
-    iframe.title = 'Danza Kuduro — Don Omar ft. Lucenzo, fragmento de 00:44 a 01:14';
+    iframe.title = 'Danza Kuduro — Don Omar ft. Lucenzo, del segundo 44 al 74';
     iframe.src = EMBED_URL;
-    iframe.allow = 'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share';
+    iframe.allow = 'autoplay; encrypted-media; picture-in-picture; web-share; fullscreen';
     iframe.referrerPolicy = 'strict-origin-when-cross-origin';
     iframe.setAttribute('allowfullscreen', '');
-    iframe.setAttribute('loading', 'eager');
-    frameHolder.replaceChildren(iframe);
-    panel.hidden = false;
-    opened = true;
-    button.setAttribute('aria-expanded', 'true');
-    button.setAttribute('aria-label', 'Detener y cerrar el fragmento de Danza Kuduro');
-    button.innerHTML = '<span aria-hidden="true">■</span> Detener canción';
-  });
-  return {stop};
+    iframe.setAttribute('loading','eager');
+    holder.replaceChildren(iframe);
+  }
+  collapse.addEventListener('click', stop);
+  toggle.addEventListener('click', start);
+  return {start, stop};
 }

@@ -20,9 +20,6 @@
 <body>
 <a class="skip-link" href="#letter-section">Ir al mensaje</a>
 <canvas id="celebration-canvas" aria-hidden="true"></canvas>
-<button class="music-control" type="button" id="music-toggle" aria-pressed="false" aria-label="Activar o pausar la música de fondo">
-<span class="music-icon" aria-hidden="true">♪</span><span class="music-caption">Activar música</span>
-</button>
 
 <!-- PORTADA. La sorpresa se revela al tocar una flor (no emojis). -->
 <section id="intro" class="intro" aria-label="Sorpresa para Dorcas">
@@ -50,25 +47,6 @@
       <img class="bouquet-img" src="assets/illustrations/bouquet.svg" width="720" height="790" alt="Un ramo de siete girasoles amarillos envueltos en papel rosa suave">
     </div>
     <p class="subline">Edición de cumpleaños · flores virtuales, pero con dedicación real.</p>
-    <!-- Reproductor oficial: se carga solo cuando la visitante toca el botón. -->
-    <div class="party-moment" id="party-moment">
-      <div class="party-moment__header">
-        <span class="party-moment__disc" aria-hidden="true">♫</span>
-        <div class="party-moment__description">
-          <span class="party-moment__eyebrow">MOMENTO DE FIESTA · SORPRESA MUSICAL</span>
-          <strong>Danza Kuduro</strong>
-          <span>Don Omar ft. Lucenzo · fragmento 00:44–01:14</span>
-        </div>
-      </div>
-      <button type="button" class="party-moment__button" id="party-play" aria-expanded="false" aria-controls="party-video" aria-label="Reproducir fragmento de Danza Kuduro en YouTube">
-        <span aria-hidden="true">▶</span> ¡Que empiece la fiesta!
-      </button>
-      <div id="party-video" class="party-moment__video" hidden>
-        <div class="party-moment__frame" id="party-frame"></div>
-        <p>Si el video no comienza solo, toca ▶ en YouTube. <a href="https://www.youtube.com/watch?v=7zp1TbLFPp8&amp;t=44s" target="_blank" rel="noopener noreferrer">Abrir el video oficial</a>.</p>
-      </div>
-    </div>
-
     <a class="scrolldown" href="#cake-section">La sorpresa continúa <span aria-hidden="true">↓</span></a>
   </section>
 
@@ -159,6 +137,25 @@
     </div>
   </section>
 </main>
+
+
+<!-- Reproductor flotante de YouTube. Se activa al tocar la flor.
+     El video oficial permanece visible mientras suena; si se cierra, se pausa. -->
+<aside id="floating-party" class="floating-party" hidden aria-label="Música de cumpleaños: Danza Kuduro">
+  <div id="floating-party-panel" class="floating-party__panel" hidden>
+    <div class="floating-party__bar">
+      <span class="floating-party__icon" aria-hidden="true">♫</span>
+      <div class="floating-party__heading">
+        <strong>Danza Kuduro</strong>
+        <small>Don Omar · 00:44–01:14</small>
+      </div>
+      <button type="button" id="floating-party-close" class="floating-party__close" aria-label="Pausar y minimizar el video" title="Pausar y minimizar">×</button>
+    </div>
+    <div id="floating-party-frame" class="floating-party__frame"></div>
+    <p class="floating-party__hint">Si el navegador bloquea el inicio automático, toca ▶ en el video. <a href="https://www.youtube.com/watch?v=7zp1TbLFPp8&amp;t=44s" rel="noopener noreferrer" target="_blank">Ver original</a>.</p>
+  </div>
+  <button type="button" id="floating-party-toggle" class="floating-party__toggle" hidden aria-label="Volver a reproducir Danza Kuduro">♫ <span>Reproducir Danza Kuduro</span> ▶</button>
+</aside>
 
 <!-- FINALE -->
 <section class="finale-overlay" id="finale-overlay" hidden role="dialog" aria-modal="true" aria-labelledby="finale-title">

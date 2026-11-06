@@ -1,12 +1,14 @@
 import {celebrate} from './particles.js';
-import {toggleMusic,pauseMusic} from './audio.js';
-import {initPartyMoment} from './youtube.js';
+import {initFloatingParty} from './youtube.js';
 const $=s=>document.querySelector(s);
-const intro=$('#intro'),experience=$('#experience'),flowerButton=$('#flower-button'),musicButton=$('#music-toggle');
+const intro=$('#intro'),experience=$('#experience'),flowerButton=$('#flower-button');
+const floatingParty=initFloatingParty();
 const canReduce=window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 let started=false;
 flowerButton.addEventListener('click',()=>{
  if(started)return;started=true;flowerButton.disabled=true;
+ // El primer toque sobre la flor permite intentar el inicio con sonido.
+ floatingParty.start();
  intro.classList.add('leaving');celebrate({count:150,x:window.innerWidth/2,y:window.innerHeight*.44});
  setTimeout(()=>{
   intro.hidden=true;experience.hidden=false;window.scrollTo(0,0);
@@ -15,21 +17,6 @@ flowerButton.addEventListener('click',()=>{
   setTimeout(()=>celebrate({count:100,x:window.innerWidth*.72,y:window.innerHeight*.26}),580);
   $('#birthday-title').focus({preventScroll:true});
  },canReduce?50:940);
-});
-function updateMusicButton(playing){
- musicButton.setAttribute('aria-pressed',String(playing));
- musicButton.querySelector('.music-caption').textContent=playing?'Pausar música':'Activar música';
- musicButton.querySelector('.music-icon').textContent=playing?'♫':'♪';
-}
-const partyMoment=initPartyMoment({
- onPlay:()=>{
-  pauseMusic();updateMusicButton(false);
-  celebrate({count:120,x:window.innerWidth/2,y:Math.min(window.innerHeight*.54,360)});
- }
-});
-musicButton.addEventListener('click',async()=>{
- partyMoment.stop(); // Evita reproducir dos músicas a la vez.
- const playing=await toggleMusic();updateMusicButton(playing);
 });
 const cakeButton=$('#blow-candles');
 cakeButton.addEventListener('click',()=>{

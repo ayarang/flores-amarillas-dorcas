@@ -1,48 +1,53 @@
-/* Momento musical: visual cálido, sin romper el ramo y con controles táctiles. */
-.party-moment{
-  position:relative; z-index:2;
-  width:min(100%,465px);
-  margin:16px auto 25px;
-  padding:16px;
-  border:1px solid rgba(255,255,255,.8);
-  border-radius:23px;
-  background:rgba(255,251,249,.81);
-  box-shadow:0 13px 42px rgba(114,77,104,.12);
-  backdrop-filter:blur(14px);
-  text-align:left;
+/* Reproductor YouTube oficial y flotante, visible mientras suena. */
+.floating-party{
+  position:fixed;z-index:130;
+  right:max(12px,env(safe-area-inset-right));
+  bottom:max(12px,env(safe-area-inset-bottom));
+  width:min(335px,calc(100vw - 24px));
+  pointer-events:none;
+  font-family:"DM Sans",system-ui,sans-serif;
 }
-.party-moment__header{display:flex;align-items:center;gap:12px;}
-.party-moment__disc{
-  flex:0 0 48px; width:48px;height:48px;
+.floating-party__panel{
+  pointer-events:auto;
+  background:rgba(255,251,248,.96);
+  border:1px solid rgba(255,255,255,.94);
+  border-radius:20px;
+  box-shadow:0 16px 55px rgba(70,41,64,.29);
+  padding:10px 10px 8px;
+  backdrop-filter:blur(15px);
+  animation:float-panel-enter .45s ease both;
+}
+.floating-party__bar{display:flex;gap:10px;align-items:center;margin:0 0 9px}
+.floating-party__icon{
+  flex:0 0 35px;width:35px;height:35px;
   display:grid;place-items:center;
-  border-radius:50%;color:#fff8ec;font-size:28px;
-  background:radial-gradient(circle at 50% 50%,#d7c2e3 0 15%,#775778 17% 50%,#513e5e 51% 100%);
-  box-shadow:0 7px 18px rgba(94,64,99,.21);
-  animation:party-record-spin 7s linear infinite;
+  color:#fff;font-size:20px;border-radius:50%;
+  background:linear-gradient(135deg,#b08cc1,#70567e);
+  animation:disc-wiggle 3s ease-in-out infinite
 }
-.party-moment__description{display:flex;flex-direction:column;min-width:0;gap:2px}
-.party-moment__eyebrow{font-size:9px;font-weight:800;letter-spacing:.11em;color:#a1799e}
-.party-moment__description strong{font:600 20px/1.15 'Playfair Display',Georgia,serif;color:#5b4462}
-.party-moment__description>span:last-child{color:#897184;font-size:11px}
-.party-moment__button{
-  display:flex;align-items:center;justify-content:center;gap:10px;
-  border:0;border-radius:999px;
-  margin-top:14px;width:100%;min-height:49px;
-  padding:13px 17px;background:#76567e;color:#fff;
-  font-size:13px;font-weight:800;
-  box-shadow:0 8px 20px rgba(115,74,119,.19);
-  transition:background .2s,transform .2s;
+.floating-party__heading{min-width:0;flex:1;text-align:left}
+.floating-party__heading strong{display:block;color:#604766;font-size:13px}
+.floating-party__heading small{display:block;color:#a08499;font-size:10px}
+.floating-party__close{
+  border:0;background:#f4e8f1;color:#755776;border-radius:50%;
+  width:38px;height:38px;font-size:24px;line-height:1;flex:none
 }
-.party-moment__button:hover{background:#8e6793;transform:translateY(-1px)}
-.party-moment__button:focus-visible{outline:3px solid #e6ba54;outline-offset:3px}
-.party-moment__button:active{transform:translateY(1px)}
-.party-moment__button span{font-size:13px}
-.party-moment__video{margin-top:16px}
-.party-moment__frame{width:100%;min-height:200px;aspect-ratio:16/9;border-radius:14px;overflow:hidden;background:#201629}
-.party-moment__frame iframe{display:block;width:100%;height:100%;border:0;min-height:200px}
-.party-moment__video p{font-size:11px;line-height:1.6;color:#8d798b;margin:9px 0 0}
-.party-moment__video a{font-weight:700;color:#76557b;text-decoration:underline;text-underline-offset:3px}
-@keyframes party-record-spin{to{transform:rotate(360deg)}}
-@media(min-width:740px){.party-moment{margin-top:10px}}
-@media(max-width:400px){.party-moment{padding:13px}.party-moment__eyebrow{font-size:8px}.party-moment__description strong{font-size:18px}}
-@media(prefers-reduced-motion:reduce){.party-moment__disc{animation:none}}
+.floating-party__close:focus-visible,.floating-party__toggle:focus-visible{outline:3px solid #e8b84c;outline-offset:2px}
+.floating-party__frame{width:100%;height:205px;min-height:200px;background:#291e2b;border-radius:12px;overflow:hidden}
+.floating-party__frame iframe{width:100%;height:100%;border:0;display:block}
+.floating-party__hint{text-align:left;font-size:10px;line-height:1.5;color:#896f85;margin:7px 2px 0}
+.floating-party__hint a{color:#755783;text-decoration:underline;text-underline-offset:2px}
+.floating-party__toggle{
+  display:flex;gap:9px;align-items:center;justify-content:center;
+  pointer-events:auto;margin-left:auto;
+  border:1px solid #ead6e9;
+  border-radius:100px;
+  padding:12px 17px;min-height:46px;
+  background:#fffaf7; color:#715076;
+  font-weight:800;font-size:12px;
+  box-shadow:0 10px 30px rgba(74,46,72,.19);
+}
+@keyframes float-panel-enter{from{transform:translateY(18px) scale(.96);opacity:0}to{transform:none;opacity:1}}
+@keyframes disc-wiggle{50%{transform:rotate(15deg)}}
+@media(max-height:540px){.floating-party__frame{height:200px}.floating-party__panel{padding:7px}}
+@media(prefers-reduced-motion:reduce){.floating-party__icon,.floating-party__panel{animation:none}}
