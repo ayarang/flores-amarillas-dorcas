@@ -8,8 +8,12 @@ function pluck(freq,at,volume=.07){
  osc.connect(gain);gain.connect(master);osc.start(at);osc.stop(at+.5);
 }
 function tick(){if(!playing||!context)return;const now=context.currentTime;for(let i=0;i<4;i++){const n=notes[(step+i)%notes.length];pluck(n,now+i*.26,.055);if((step+i)%4===0)pluck(n/2,now+i*.26,.027)}step=(step+4)%notes.length}
+export function pauseMusic(){
+ if(!playing)return;
+ playing=false;clearInterval(timer);timer=null;
+}
 export async function toggleMusic(){
- if(playing){playing=false;clearInterval(timer);timer=null;return false}
+ if(playing){pauseMusic();return false}
  try{
   if(!context){context=new (window.AudioContext||window.webkitAudioContext)();master=context.createGain();master.gain.value=.52;master.connect(context.destination)}
   await context.resume();playing=true;tick();timer=setInterval(tick,1040);return true;

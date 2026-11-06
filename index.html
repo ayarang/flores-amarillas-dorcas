@@ -14,6 +14,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="css/styles.css">
+<link rel="stylesheet" href="css/youtube.css">
 <script type="module" src="js/app.js"></script>
 </head>
 <body>
@@ -49,6 +50,25 @@
       <img class="bouquet-img" src="assets/illustrations/bouquet.svg" width="720" height="790" alt="Un ramo de siete girasoles amarillos envueltos en papel rosa suave">
     </div>
     <p class="subline">Edición de cumpleaños · flores virtuales, pero con dedicación real.</p>
+    <!-- Reproductor oficial: se carga solo cuando la visitante toca el botón. -->
+    <div class="party-moment" id="party-moment">
+      <div class="party-moment__header">
+        <span class="party-moment__disc" aria-hidden="true">♫</span>
+        <div class="party-moment__description">
+          <span class="party-moment__eyebrow">MOMENTO DE FIESTA · SORPRESA MUSICAL</span>
+          <strong>Danza Kuduro</strong>
+          <span>Don Omar ft. Lucenzo · fragmento 00:44–01:14</span>
+        </div>
+      </div>
+      <button type="button" class="party-moment__button" id="party-play" aria-expanded="false" aria-controls="party-video" aria-label="Reproducir fragmento de Danza Kuduro en YouTube">
+        <span aria-hidden="true">▶</span> ¡Que empiece la fiesta!
+      </button>
+      <div id="party-video" class="party-moment__video" hidden>
+        <div class="party-moment__frame" id="party-frame"></div>
+        <p>Si el video no comienza solo, toca ▶ en YouTube. <a href="https://www.youtube.com/watch?v=7zp1TbLFPp8&amp;t=44s" target="_blank" rel="noopener noreferrer">Abrir el video oficial</a>.</p>
+      </div>
+    </div>
+
     <a class="scrolldown" href="#cake-section">La sorpresa continúa <span aria-hidden="true">↓</span></a>
   </section>
 
