@@ -12,6 +12,8 @@ Versión de cumpleaños del proyecto de flores amarillas para Dorcas Yaranga. Re
 - js/particles.js — pétalos, confeti y destellos en canvas.
 - js/youtube.js — reproductor flotante oficial de YouTube (Danza Kuduro 00:44–01:14), que intenta comenzar al tocar el girasol.
 - css/youtube.css — estilos adaptables del reproductor flotante.
+- css/polish.css — detalles visuales premium, barra de progreso, postal familiar, controles de galería y mejoras móviles.
+- js/polish.js — navegación de capítulos, mini-interacciones, galería accesible y opción de compartir.
 - assets/illustrations/ — girasol individual y ramo ilustrados en SVG.
 - assets/images/ — cuatro fotografías recuperadas de la versión anterior.
 - flores-original.html — la página anterior preservada sin modificar.
@@ -36,6 +38,15 @@ El reproductor flota encima de la página durante la canción y mantiene el vide
 ## Publicación con GitHub Pages
 
 El sitio es estático, sin dependencias, compilación ni base de datos. En Settings → Pages selecciona Deploy from a branch, branch main, carpeta / (root). Los cambios publicados pueden tardar unos minutos.
+
+## Mejoras de la edición especial
+
+- Barra de progreso discreta y etiqueta del capítulo que se actualizan al desplazarse.
+- Brillos y microanimaciones en la portada y el ramo, respetando la reducción de movimiento.
+- Postal «No estamos cerca. Pero aquí estoy» usando una foto familiar ya existente.
+- Galería con flechas, contador y navegación entre fotografías en pantalla completa.
+- Botón «Compartir esta sorpresa», con Web Share nativo y copia de enlace como alternativa.
+- Reproductor flotante de Danza Kuduro y música instrumental eliminada.
 
 ## Accesibilidad y rendimiento
 

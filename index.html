@@ -6,6 +6,9 @@
 <meta name="theme-color" content="#ecd8e8">
 <meta name="description" content="Una sorpresa de cumpleaños para Dorcas: flores amarillas, recuerdos y un mensaje especial.">
 <meta property="og:type" content="website">
+<meta property="og:locale" content="es_PE">
+<meta name="color-scheme" content="light">
+<meta name="twitter:card" content="summary_large_image">
 <meta property="og:title" content="¡Feliz cumpleaños, Dorcas! 🌻">
 <meta property="og:description" content="Pensaste que las flores amarillas eran cosa de una sola vez...">
 <meta property="og:image" content="https://ayarang.github.io/flores-amarillas-dorcas/assets/images/dorcas-retrato.jpg">
@@ -15,15 +18,27 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="css/styles.css">
 <link rel="stylesheet" href="css/youtube.css">
+<link rel="stylesheet" href="css/polish.css">
+<link rel="preload" as="image" href="assets/illustrations/sunflower.svg">
 <script type="module" src="js/app.js"></script>
+<script type="module" src="js/polish.js"></script>
 </head>
 <body>
-<a class="skip-link" href="#letter-section">Ir al mensaje</a>
+<a class="skip-link" id="skip-link" href="#birthday-hero" hidden>Ir al contenido del cumpleaños</a>
+<div class="site-progress" id="site-progress" hidden aria-hidden="true"><span id="site-progress-fill"></span></div>
+<div class="story-index" id="story-index" hidden aria-label="Progreso del recorrido">
+ <span class="story-index__flower" aria-hidden="true">✿</span>
+ <span class="story-index__name">Para Dorcas</span>
+ <span class="story-index__divider"></span>
+ <span class="story-index__chapter" id="story-chapter">La sorpresa</span>
+</div>
+<div class="polish-toast" id="polish-toast" role="status" aria-live="polite" hidden></div>
 <canvas id="celebration-canvas" aria-hidden="true"></canvas>
 
 <!-- PORTADA. La sorpresa se revela al tocar una flor (no emojis). -->
 <section id="intro" class="intro" aria-label="Sorpresa para Dorcas">
   <div class="sparkle-bg" aria-hidden="true"></div>
+  <div class="intro-dust" aria-hidden="true"></div>
   <div class="intro-inner">
     <p class="eyebrow">Una entrega especial · 06.11.2026</p>
     <h1>Hay flores que<br><em>siempre regresan.</em></h1>
@@ -41,6 +56,8 @@
   <section id="birthday-hero" class="birthday-hero" aria-labelledby="birthday-title">
     <div class="sparkle-bg" aria-hidden="true"></div>
     <div class="date-pill"><span class="tiny-star" aria-hidden="true">✦</span> 6 de noviembre de 2026 <span class="tiny-star" aria-hidden="true">✦</span></div>
+    <span class="hero-ornament hero-ornament--one" aria-hidden="true">✶</span>
+    <span class="hero-ornament hero-ornament--two" aria-hidden="true">✦</span>
     <h2 id="birthday-title" tabindex="-1">¡Feliz cumpleaños,<br><em>Dorcas!</em></h2>
     <p class="hero-description">¿Pensaste que las flores amarillas eran cosa de una sola vez? Jajajaja. Volvieron por un motivo más especial: <strong>celebrar tu cumpleaños.</strong></p>
     <div class="bouquet-stage">
@@ -113,12 +130,37 @@
     </article>
   </section>
 
+  <!-- Una pausa emotiva, con una foto familiar que ya formaba parte del regalo original. -->
+  <section class="distance-section section-wrap" id="distancia" aria-labelledby="distance-title">
+    <div class="distance-inner section-inner reveal">
+      <div class="distance-photo" aria-label="Recuerdo familiar">
+        <div class="distance-photo__halo" aria-hidden="true"></div>
+        <img src="assets/images/familia.jpg" alt="Recuerdo de familia, para volver a reunirnos" loading="lazy" width="850" height="1250">
+        <span class="distance-photo__stamp">Un recuerdo para guardar ♡</span>
+      </div>
+      <div class="distance-copy">
+        <p class="section-kicker">Una cosa más / Desde la distancia</p>
+        <h2 class="section-title" id="distance-title">No estamos cerca.<br><em>Pero aquí estoy.</em></h2>
+        <span class="rule" aria-hidden="true"></span>
+        <p class="section-lead">Ojalá algún día podamos celebrar todos juntos, con una torta de verdad y sin tener que mandar flores por un enlace, jajaja.</p>
+        <p class="distance-copy__last">Por ahora, que este pequeño detalle te saque una sonrisa. <span aria-hidden="true">🌻</span></p>
+      </div>
+    </div>
+  </section>
+
   <section class="section-wrap gallery-section" id="recuerdos" aria-labelledby="gallery-title">
     <div class="gallery-head reveal">
       <div><p class="section-kicker">Capítulo 03 / Nuestro archivo</p><h2 class="section-title" id="gallery-title">Momentos que<br><em>se quedan.</em></h2></div>
       <p class="section-lead">Algunas fotos que ya estaban en nuestras flores de antes. Porque un cumpleaños también es una buena excusa para recordar. 📸</p>
     </div>
-    <div class="gallery-track" role="group" aria-label="Galería de recuerdos; desliza horizontalmente para ver las fotos">
+    <div class="gallery-controls" aria-label="Controles de recuerdos">
+      <span class="gallery-counter" id="gallery-counter" aria-live="polite">01 <span>/ 04</span></span>
+      <div class="gallery-arrows">
+        <button type="button" class="gallery-arrow" id="gallery-prev" aria-label="Fotografía anterior">←</button>
+        <button type="button" class="gallery-arrow" id="gallery-next" aria-label="Fotografía siguiente">→</button>
+      </div>
+    </div>
+    <div class="gallery-track" id="gallery-track" role="group" aria-label="Galería de recuerdos; desliza horizontalmente para ver las fotos">
       <button type="button" class="memory-card" aria-label="Ampliar fotografía de Dorcas"><img src="assets/images/dorcas-retrato.jpg" alt="Retrato de Dorcas" loading="lazy" width="850" height="1250"><span class="memory-caption"><b>La protagonista del día.</b><small>Hoy toca celebrarte a ti.</small></span></button>
       <button type="button" class="memory-card" aria-label="Ampliar recuerdo de Dorcas"><img src="assets/images/recuerdo-dorcas.jpg" alt="Un recuerdo de Dorcas" loading="lazy" width="850" height="1250"><span class="memory-caption"><b>Uno de esos recuerdos.</b><small>Que quede en el archivo, jajaja.</small></span></button>
       <button type="button" class="memory-card" aria-label="Ampliar fotografía de promoción"><img src="assets/images/promocion.jpg" alt="Recuerdo de una celebración de promoción" loading="lazy" width="850" height="1250"><span class="memory-caption"><b>Un día para recordar.</b><small>Momentos que valen la pena.</small></span></button>
@@ -133,6 +175,7 @@
       <h2 id="last-title" class="section-title">Todavía queda<br><em>un regalo.</em></h2>
       <p class="section-lead">No es un regalo físico, ni viene en una caja. Pero aquí van todas las flores amarillas que pude conseguir por internet. 😌</p>
       <button type="button" class="primary-button" id="last-gift">Abrir mi último regalo 🌻</button>
+      <button type="button" class="share-button" id="share-surprise"><span aria-hidden="true">↗</span> Compartir esta sorpresa</button>
       <p class="small-footer">06.11.2026 <span>·</span> <a href="flores-original.html">Volver a las flores originales</a></p>
     </div>
   </section>
@@ -166,13 +209,18 @@
     <img src="assets/illustrations/sunflower.svg" class="finale-flower" width="560" height="720" alt="">
     <h2 id="finale-title">Que nunca te falten<br><em>motivos para sonreír.</em></h2>
     <p>¡Feliz cumpleaños, hermana! Hasta que podamos celebrarlo todos juntos, aquí tienes tus flores amarillas. Otra vez. Jajajaja. 💛</p>
-    <button class="finale-close" type="button" id="finale-close">Cerrar sorpresa ✕</button>
+    <div class="finale-actions">
+      <button class="finale-close" type="button" id="finale-close">Cerrar sorpresa ✕</button>
+      <button class="finale-close finale-share" type="button" id="finale-share">Compartir este regalo ↗</button>
+    </div>
   </div>
 </section>
 
 <dialog class="lightbox" id="lightbox" aria-label="Fotografía ampliada">
   <button id="lightbox-close" type="button" class="lightbox-close" aria-label="Cerrar foto">×</button>
-  <div><img id="lightbox-image" src="assets/images/dorcas-retrato.jpg" alt=""><p id="lightbox-caption"></p></div>
+  <button id="lightbox-prev" type="button" class="lightbox-nav lightbox-nav--prev" aria-label="Ver fotografía anterior">←</button>
+  <div class="lightbox-content"><img id="lightbox-image" src="assets/images/dorcas-retrato.jpg" alt=""><p id="lightbox-caption"></p><p id="lightbox-count" class="lightbox-count">01 / 04</p></div>
+  <button id="lightbox-next" type="button" class="lightbox-nav lightbox-nav--next" aria-label="Ver fotografía siguiente">→</button>
 </dialog>
 </body>
 </html>
